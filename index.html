@@ -3,491 +3,353 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation">
   <meta name="description" content="FORCA is a coding agent that writes and revises robot programs using wrist force/torque feedback, with no demonstrations, task-specific training, or simulation.">
-  <meta name="keywords" content="FORCA, coding agent, force/torque sensing, contact-rich manipulation, robot manipulation, foundation models, embodied agents, force feedback, program synthesis">
+  <meta name="keywords" content="FORCA, coding agent, force/torque sensing, contact-rich manipulation, robot manipulation">
   <meta name="author" content="Xiao Tan, Yixuan Wang, Zhexi Wang, Wenzhen Yuan">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="University of Illinois Urbana-Champaign">
   <meta property="og:title" content="FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation">
-  <meta property="og:description" content="A coding agent that writes and revises robot programs using wrist force/torque feedback, with no demonstrations, task-specific training, or simulation.">
+  <meta property="og:description" content="A coding agent that writes and revises robot programs using wrist force/torque feedback.">
   <meta property="og:url" content="https://tanoom.github.io/forca/">
   <meta property="og:image" content="https://tanoom.github.io/forca/static/images/social_preview.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation">
-  <meta property="article:author" content="Xiao Tan">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="Robotics">
-  <meta property="article:tag" content="Force sensing">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation">
-  <meta name="twitter:description" content="A coding agent that writes and revises robot programs using wrist force/torque feedback.">
   <meta name="twitter:image" content="https://tanoom.github.io/forca/static/images/social_preview.jpg">
-  <meta name="twitter:image:alt" content="FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation">
 
-  <!-- Academic/Research Specific -->
   <meta name="citation_title" content="FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation">
   <meta name="citation_author" content="Tan, Xiao">
   <meta name="citation_author" content="Wang, Yixuan">
   <meta name="citation_author" content="Wang, Zhexi">
   <meta name="citation_author" content="Yuan, Wenzhen">
   <meta name="citation_publication_date" content="2026">
-  <!-- TODO: once on arXiv, add: <meta name="citation_arxiv_id" content="XXXX.XXXXX"> -->
-
-  <meta name="theme-color" content="#2563eb">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
   <title>FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation</title>
 
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css?v=3">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css?v=3">
   <link rel="icon" type="image/png" href="static/images/favicon.png">
-  <link rel="apple-touch-icon" href="static/images/favicon.png">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation",
-    "description": "A coding agent that writes and revises robot programs using wrist force/torque feedback.",
-    "author": [
-      {"@type": "Person", "name": "Xiao Tan", "affiliation": {"@type": "Organization", "name": "University of Illinois Urbana-Champaign"}},
-      {"@type": "Person", "name": "Yixuan Wang", "affiliation": {"@type": "Organization", "name": "University of Illinois Urbana-Champaign"}},
-      {"@type": "Person", "name": "Zhexi Wang", "affiliation": {"@type": "Organization", "name": "University of Illinois Urbana-Champaign"}},
-      {"@type": "Person", "name": "Wenzhen Yuan", "affiliation": {"@type": "Organization", "name": "University of Illinois Urbana-Champaign"}}
-    ],
-    "datePublished": "2026",
-    "url": "https://tanoom.github.io/forca/",
-    "image": "https://tanoom.github.io/forca/static/images/social_preview.jpg",
-    "keywords": ["Force and tactile sensing", "manipulation planning", "embodied agents", "contact-rich control"],
-    "isAccessibleForFree": true
-  }
-  </script>
 </head>
 <body>
 
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Xiao Tan<sup>1,*</sup>,</span>
+            <span class="author-block">Yixuan Wang<sup>1,*</sup>,</span>
+            <span class="author-block">Zhexi Wang<sup>1,2</sup>,</span>
+            <span class="author-block">Wenzhen Yuan<sup>1</sup></span>
+          </div>
 
-  <main id="main-content">
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign,</span>
+            <span class="author-block"><sup>2</sup>Tsinghua University</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
+          </div>
 
-  <!-- ================= Title ================= -->
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation</h1>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">Xiao Tan<sup>1,*</sup>,</span>
-              <span class="author-block">Yixuan Wang<sup>1,*</sup>,</span>
-              <span class="author-block">Zhexi Wang<sup>1,2</sup>,</span>
-              <span class="author-block">Wenzhen Yuan<sup>1</sup></span>
-            </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign</span>
-              <span class="author-block"><sup>2</sup>Tsinghua University</span>
-            </div>
-            <div class="publication-venue">Submitted to IEEE Robotics and Automation Letters (RA-L)</div>
-            <span class="eql-cntrb"><small><sup>*</sup>Equal contribution</small></span>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- TODO: replace XXXX.XXXXX with the arXiv ID once announced -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/XXXX.XXXXX" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="ai ai-arxiv"></i></span>
-                    <span>arXiv</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="#video" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-video"></i></span>
-                    <span>Video</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-quote-right"></i></span>
-                    <span>BibTeX</span>
-                  </a>
-                </span>
-              </div>
+            <div class="publication-links">
+              <!-- TODO: replace XXXX.XXXXX with the arXiv ID once announced -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/XXXX.XXXXX" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/XXXX.XXXXX" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#video" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= Teaser figure ================= -->
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <img src="static/images/fig1_overview.jpg" alt="Overview of FORCA: force-aware program synthesis, contact-responsive execution, and execution-grounded revision" class="paper-figure">
-        <h2 class="subtitle has-text-centered">
-          <b>FORCA</b> writes robot programs that use wrist force/torque feedback while they run,
-          then reads the recorded force traces next to the camera view to diagnose failures and revise the program.
-        </h2>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/fig1_overview.jpg" class="paper-figure" alt="Overview of FORCA">
+      <h2 class="subtitle has-text-centered">
+        <b>FORCA</b> writes robot programs that use wrist force/torque feedback during execution,
+        and revises them by reading the recorded force traces alongside the camera view.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Coding agents can translate language instructions into robot programs. For contact-rich manipulation,
+            a key challenge is to generate and refine control logic that responds to physical interaction.
+            We present <b>FORCA</b>, a coding agent that takes visual observations and wrist force/torque (F/T)
+            measurements as input to write Python programs for contact probing and force-responsive motion.
+            Between executions, the agent inspects force records alongside visual outcomes to diagnose failures
+            and revise both motion and force-feedback control logic. FORCA requires no demonstrations,
+            task-specific training, or simulation. Across five real-robot tasks, we demonstrate its effectiveness
+            in three forms of contact-rich manipulation: improving manipulation accuracy, adapting to changes in
+            object or surface properties, and regulating contact under surface variation and object motion.
+            Compared with a vision-only variant of the same agent, FORCA improves grasp accuracy and task success
+            and reduces contact loss in wiping and peeling.
+          </p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- ================= Key numbers ================= -->
-  <section class="section key-results-section">
-    <div class="container is-max-desktop">
-      <div class="key-results">
-        <div class="key-result">
-          <div class="kr-value">40% <span class="kr-arrow">&rarr;</span> 100%</div>
-          <div class="kr-label">Drawer opening success</div>
-        </div>
-        <div class="key-result">
-          <div class="kr-value">10% <span class="kr-arrow">&rarr;</span> 100%</div>
-          <div class="kr-label">Door-handle success</div>
-        </div>
-        <div class="key-result">
-          <div class="kr-value">&le; 2.2%</div>
-          <div class="kr-label">Contact loss in wiping and peeling<br><span class="kr-sub">vision-only: 40.6&ndash;55.9%</span></div>
+    <!-- Video -->
+    <div class="columns is-centered has-text-centered" id="video">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <video controls preload="metadata" playsinline poster="static/videos/forca_video_poster.jpg">
+            <source src="static/videos/forca_video.mp4" type="video/mp4">
+            <track kind="captions" src="static/videos/forca_video_en.vtt" srclang="en" label="English">
+          </video>
         </div>
       </div>
-      <p class="kr-note">FORCA compared with a vision-only variant of the same agent, 10 trials per task on a UR5e.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= Abstract ================= -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Coding agents can translate language instructions into robot programs. For contact-rich manipulation,
-              a key challenge is to generate and refine control logic that responds to physical interaction.
-              We present FORCA, a coding agent that takes visual observations and wrist force/torque (F/T)
-              measurements as input to write Python programs for contact probing and force-responsive motion.
-              Between executions, the agent inspects force records alongside visual outcomes to diagnose failures
-              and revise both motion and force-feedback control logic. FORCA requires no demonstrations,
-              task-specific training, or simulation. Across five real-robot tasks, we demonstrate its effectiveness
-              in three forms of contact-rich manipulation: improving manipulation accuracy, adapting to changes in
-              object or surface properties, and regulating contact under surface variation and object motion.
-              Compared with a vision-only variant of the same agent, FORCA improves grasp accuracy and task success
-              and reduces contact loss in wiping and peeling.
-            </p>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            Given a language instruction and RGB-D observations, FORCA writes a complete Python task program with
+            access to the measured wrist wrench. The program runs on the robot without querying the foundation model.
+            During a rollout, contact probes refine geometric estimates such as surface height or grasp position, and a
+            100&nbsp;Hz loop reads the wrench and adjusts motion for actions that need sustained contact. Between rollouts,
+            the agent relates force events in the recorded trace to robot motion and visible outcomes, and revises
+            parameters, contact conditions, control logic or the action sequence.
+          </p>
+        </div>
+        <figure>
+          <img src="static/images/fig2_modules.jpg" class="paper-figure" alt="Predefined skill modules">
+          <figcaption class="figure-caption">
+            Predefined skill modules. (a) SAM&nbsp;3 localizes the tool named in the instruction. (b) GraspGen proposes
+            candidate grasps, and the VLM selects one. (c) PyRoKi plans the trajectory. (d) The robot executes the routine
+            to acquire the tool.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="static/images/fig3_revision.jpg" class="paper-figure" alt="Program revision for cucumber peeling">
+          <figcaption class="figure-caption">
+            Program revision for cucumber peeling. Skin is left exactly where the recorded blade force drops below 1&nbsp;N,
+            so the agent adds a condition that pauses forward motion until contact is restored.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate FORCA on five real-robot tasks with a UR5e arm and a wrist F/T sensor, and compare it with a
+            vision-only variant of the same agent that uses the same foundation model, instructions and skills but has
+            no access to force data.
+          </p>
+        </div>
+
+        <h3 class="title is-4 subsection-title">Precise manipulation</h3>
+        <div class="content has-text-justified">
+          <p>
+            In drawer opening and door-handle operation, FORCA refines the visually estimated grasp pose by probing the
+            handle and door panel. It succeeds in all 10 trials on both tasks, compared with 4/10 and 1/10 for the
+            vision-only agent.
+          </p>
+        </div>
+        <figure>
+          <img src="static/images/fig4_drawer_door.jpg" class="paper-figure" alt="Drawer opening and door-handle operation">
+          <figcaption class="figure-caption">
+            Panels 1&ndash;3 show FORCA estimating geometry visually, refining it through contact probing, and grasping.
+            Panel 4 compares outcomes with the vision-only agent.
+          </figcaption>
+        </figure>
+        <div class="table-container">
+          <table class="table is-narrow results-table">
+            <caption>Grasp error (mean &plusmn; std) and task success over 10 trials.</caption>
+            <thead>
+              <tr><th>Task</th><th>Method</th><th>Trans. err. (mm) &darr;</th><th>Rot. err. (&deg;) &darr;</th><th>Success (%) &uarr;</th></tr>
+            </thead>
+            <tbody>
+              <tr><td rowspan="2">Drawer</td><td>Vision-only</td><td>8.3 &plusmn; 5.4</td><td>9.6 &plusmn; 3.2</td><td>40</td></tr>
+              <tr class="ours"><td>FORCA</td><td>5.3 &plusmn; 1.6</td><td>1.0 &plusmn; 0.3</td><td>100</td></tr>
+              <tr><td rowspan="2">Door</td><td>Vision-only</td><td>65.3 &plusmn; 16.9</td><td>55.5 &plusmn; 14.9</td><td>10</td></tr>
+              <tr class="ours"><td>FORCA</td><td>20.0 &plusmn; 0.9</td><td>0.6 &plusmn; 0.5</td><td>100</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="title is-4 subsection-title">Adapting to new physical conditions</h3>
+        <div class="content has-text-justified">
+          <p>
+            In cube-to-target, the robot knocks an object so it slides into a target region. FORCA develops a program
+            for a cube on a whiteboard, then continues from it when the object (cube or cylinder) or the surface
+            (whiteboard or woodboard) changes. In each new configuration it reaches the target within a few additional
+            revisions.
+          </p>
+        </div>
+        <div class="columns is-vcentered">
+          <div class="column is-7">
+            <figure>
+              <img src="static/images/fig5_cube.jpg" class="paper-figure" alt="Cube-to-target landing positions and object/surface variants">
+              <figcaption class="figure-caption">(a) Object positions across attempts. (b) Object and surface configurations.</figcaption>
+            </figure>
+          </div>
+          <div class="column is-5">
+            <figure>
+              <img src="static/images/fig6_reuse.jpg" class="paper-figure" alt="Distance to target per attempt">
+              <figcaption class="figure-caption">Distance to the target band per attempt, starting from the program developed for the cube on the whiteboard.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <h3 class="title is-4 subsection-title">Online contact regulation</h3>
+        <div class="content has-text-justified">
+          <p>
+            In vase wiping, both agents refine their programs on a static vase and are then deployed without further
+            revision on a vase that a person moves by hand. FORCA follows the moving surface with force feedback,
+            while the vision-only program loses contact.
+          </p>
+        </div>
+        <figure>
+          <img src="static/images/fig7_wiping.jpg" class="paper-figure" alt="Vase wiping results and force traces">
+          <figcaption class="figure-caption">
+            Vase wiping: (a) static vase and (b) zero-shot transfer to a hand-held vase. Outcomes, execution frames
+            and normal force traces.
+          </figcaption>
+        </figure>
+        <div class="table-container">
+          <table class="table is-narrow results-table">
+            <caption>Vase wiping, averaged over 10 trials.</caption>
+            <thead>
+              <tr><th>Vase</th><th>Method</th><th>Removal (%) &uarr;</th><th>Contact loss (%) &darr;</th><th>Max. force (N) &darr;</th></tr>
+            </thead>
+            <tbody>
+              <tr><td rowspan="2">Static</td><td>Vision-only</td><td>73</td><td>42.6</td><td>11.8</td></tr>
+              <tr class="ours"><td>FORCA</td><td>99</td><td>0.7</td><td>11.3</td></tr>
+              <tr><td rowspan="2">Hand-held</td><td>Vision-only</td><td>21</td><td>55.9</td><td>17.5</td></tr>
+              <tr class="ours"><td>FORCA</td><td>93</td><td>1.6</td><td>12.3</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified subsection-title">
+          <p>
+            In cucumber peeling, the robot peels a strip from a cucumber held by a person. FORCA keeps the blade
+            in contact along the uneven surface and produces a continuous strip.
+          </p>
+        </div>
+        <div class="columns is-vcentered">
+          <div class="column is-7">
+            <figure>
+              <img src="static/images/fig8_peeling.jpg" class="paper-figure" alt="Cucumber peeling rollouts">
+              <figcaption class="figure-caption">
+                Cucumber peeling: setup, strip coverage after one pass, key frames and normal force.
+              </figcaption>
+            </figure>
+          </div>
+          <div class="column is-5">
+            <div class="table-container">
+              <table class="table is-narrow results-table">
+                <caption>Peeling, averaged over 10 trials (%).</caption>
+                <thead>
+                  <tr><th>Method</th><th>Contact loss &darr;</th><th>Excess force &darr;</th><th>Peeled &uarr;</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Vision-only</td><td>40.6</td><td>13.4</td><td>37.4</td></tr>
+                  <tr class="ours"><td>FORCA</td><td>2.2</td><td>2.7</td><td>81.1</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4 subsection-title">Iterative program revision</h3>
+        <div class="columns is-vcentered">
+          <div class="column is-6">
+            <figure>
+              <img src="static/images/fig9_door_history.jpg" class="paper-figure" alt="Door-handle development histories">
+              <figcaption class="figure-caption">Door-handle development histories. Each marker is one execution, placed at the stage where it failed.</figcaption>
+            </figure>
+          </div>
+          <div class="column is-6">
+            <div class="content has-text-justified">
+              <p>
+                FORCA failed mostly at pressing the handle down. It located the latch release and end stop from the
+                recorded press force, then fixed the remaining failures in pulling and releasing. The vision-only agent
+                failed mostly at grasping and pulling, as the handle kept slipping out of the gripper.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= Video ================= -->
-  <section class="section" id="video">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Video</h2>
-      <div class="video-frame">
-        <video controls preload="metadata" playsinline poster="static/videos/forca_video_poster.jpg">
-          <source src="static/videos/forca_video.mp4" type="video/mp4">
-          <track kind="captions" src="static/videos/forca_video_en.vtt" srclang="en" label="English">
-          Your browser does not support HTML5 video.
-        </video>
-      </div>
-      <p class="figure-caption has-text-centered">Narrated overview with real-robot rollouts (4:30, sound on). Captions available from the player menu.</p>
-    </div>
-  </section>
-
-  <!-- ================= Method ================= -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Method</h2>
-      <div class="content has-text-justified">
-        <p>
-          Given a language instruction and RGB-D observations, FORCA writes a complete Python task program with
-          access to the measured wrist wrench. The program runs on the robot without querying the foundation model.
-          After execution, the agent reviews the recorded interaction and revises the code. The approach has three parts:
-        </p>
-        <ol>
-          <li><b>Force-aware program synthesis.</b> Starting from a skill codebase for perception, grasping and motion
-            planning, the agent writes the force-dependent logic for each task, such as when an approach should stop
-            or how motion should respond to a force error.</li>
-          <li><b>Contact-responsive execution.</b> During a rollout, contact probes refine geometric estimates
-            (surface height, grasp position), and a 100&nbsp;Hz loop reads the wrench and updates Cartesian velocity
-            commands for actions that need sustained contact.</li>
-          <li><b>Execution-grounded revision.</b> Between rollouts, the agent relates force events in the recorded
-            trace to robot motion and visible outcomes, then revises parameters, contact conditions, control logic
-            or the action sequence.</li>
-        </ol>
-      </div>
-
-      <figure class="paper-figure-block">
-        <img src="static/images/fig2_modules.jpg" alt="Predefined skill modules: open-vocabulary segmentation, grasp proposal and selection, trajectory optimization, pick-and-place execution" class="paper-figure">
-        <figcaption class="figure-caption">
-          <b>Predefined skill modules.</b> (a) SAM&nbsp;3 localizes the tool named in the instruction.
-          (b) GraspGen proposes candidate grasps, and the VLM selects one. (c) PyRoKi plans the trajectory.
-          (d) The robot executes the routine to acquire the tool.
-        </figcaption>
-      </figure>
-
-      <figure class="paper-figure-block">
-        <img src="static/images/fig3_revision.jpg" alt="Program revision for cucumber peeling: the agent compares force records with peeling gaps and adds a wait-for-contact condition" class="paper-figure">
-        <figcaption class="figure-caption">
-          <b>Program revision for cucumber peeling.</b> Skin is left exactly where the recorded blade force drops
-          below 1&nbsp;N, so the agent adds a condition that pauses forward motion until contact is restored.
-          Photos are from real runs; force traces and skin patches are idealized, and the code is simplified.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ================= Results: precision ================= -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Results</h2>
-      <p class="has-text-centered results-intro">
-        Five real-robot tasks on a UR5e with a wrist F/T sensor, grouped by how force feedback helps.
-        The baseline is a vision-only variant of the same agent with the same foundation model, instructions and skills,
-        but no access to force data.
-      </p>
-
-      <h3 class="title is-4 result-heading">1. Precise manipulation: drawer opening and door-handle operation</h3>
-      <div class="content has-text-justified">
-        <p>
-          The drawer is transparent, so its handle is hard to localize from vision alone. FORCA probes the handle and
-          door panel to refine the grasp pose before acting.
-        </p>
-      </div>
-      <figure class="paper-figure-block">
-        <img src="static/images/fig4_drawer_door.jpg" alt="Drawer opening and door-handle operation rollouts: visual estimate, contact probe, grasp, and outcome compared with vision-only" class="paper-figure">
-        <figcaption class="figure-caption">
-          Panels 1&ndash;3 show FORCA estimating geometry visually, refining it through contact probing, and grasping.
-          Panel 4 compares outcomes: the vision-only agent misses the drawer grasp and loses its grip on the door handle,
-          while FORCA opens both.
-        </figcaption>
-      </figure>
-      <div class="table-container">
-        <table class="table is-narrow is-hoverable results-table">
-          <caption>Grasp accuracy and task success (mean &plusmn; std over 10 trials).</caption>
-          <thead>
-            <tr><th>Task</th><th>Method</th><th>Trans. err. (mm) &darr;</th><th>Rot. err. (&deg;) &darr;</th><th>Success (%) &uarr;</th></tr>
-          </thead>
-          <tbody>
-            <tr><td rowspan="2">Drawer</td><td>Vision-only</td><td>8.3 &plusmn; 5.4</td><td>9.6 &plusmn; 3.2</td><td>40</td></tr>
-            <tr class="ours"><td>FORCA</td><td>5.3 &plusmn; 1.6</td><td>1.0 &plusmn; 0.3</td><td>100</td></tr>
-            <tr><td rowspan="2">Door</td><td>Vision-only</td><td>65.3 &plusmn; 16.9</td><td>55.5 &plusmn; 14.9</td><td>10</td></tr>
-            <tr class="ours"><td>FORCA</td><td>20.0 &plusmn; 0.9</td><td>0.6 &plusmn; 0.5</td><td>100</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Results: adaptation ================= -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <h3 class="title is-4 result-heading">2. Adapting to new physical conditions: cube-to-target</h3>
-      <div class="content has-text-justified">
-        <p>
-          The robot knocks an object so it slides into a target region. FORCA first builds a knocking program from scratch
-          for a cube on a whiteboard (13 iterations). We then swap in a cylinder (61.9&nbsp;g vs. 663.6&nbsp;g) or a
-          woodboard surface with different friction. Continuing from the retained program, FORCA reaches the target band
-          within about 2 additional revisions in each new configuration.
-        </p>
-      </div>
-      <div class="columns is-vcentered">
-        <div class="column is-7">
-          <figure class="paper-figure-block">
-            <img src="static/images/fig5_cube.jpg" alt="Cube-to-target landing positions across attempts, and object and surface variants" class="paper-figure">
-            <figcaption class="figure-caption">(a) Object positions across successive attempts; shading marks the target region. (b) Object and surface configurations.</figcaption>
-          </figure>
-        </div>
-        <div class="column is-5">
-          <figure class="paper-figure-block">
-            <img src="static/images/fig6_reuse.jpg" alt="Distance to target per attempt for each object and surface" class="paper-figure">
-            <figcaption class="figure-caption">Distance to the target band per attempt (0: inside), starting from the program developed for the cube on the whiteboard.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Results: contact regulation ================= -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h3 class="title is-4 result-heading">3. Online contact regulation: vase wiping and cucumber peeling</h3>
-      <div class="content has-text-justified">
-        <p>
-          <b>Vase wiping.</b> Both agents refine their programs on a static vase, then run them without further revision
-          on a vase that a person moves and rotates. The vision-only program's tuned offsets stop working once the vase moves;
-          FORCA follows the moving surface with force feedback.
-        </p>
-      </div>
-      <figure class="paper-figure-block">
-        <img src="static/images/fig7_wiping.jpg" alt="Vase wiping outcomes, execution frames, and normal force traces for static and hand-held vase" class="paper-figure">
-        <figcaption class="figure-caption">
-          (a) Static vase and (b) zero-shot transfer to a hand-held vase: outcomes (top), execution frames (middle) and force traces (bottom).
-        </figcaption>
-      </figure>
-      <div class="table-container">
-        <table class="table is-narrow is-hoverable results-table">
-          <caption>Vase wiping, averaged over 10 trials.</caption>
-          <thead>
-            <tr><th>Vase</th><th>Method</th><th>Removal (%) &uarr;</th><th>Contact loss (%) &darr;</th><th>Max. force (N) &darr;</th></tr>
-          </thead>
-          <tbody>
-            <tr><td rowspan="2">Static</td><td>Vision-only</td><td>73</td><td>42.6</td><td>11.8</td></tr>
-            <tr class="ours"><td>FORCA</td><td>99</td><td>0.7</td><td>11.3</td></tr>
-            <tr><td rowspan="2">Hand-held</td><td>Vision-only</td><td>21</td><td>55.9</td><td>17.5</td></tr>
-            <tr class="ours"><td>FORCA</td><td>93</td><td>1.6</td><td>12.3</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="content has-text-justified peel-text">
-        <p>
-          <b>Cucumber peeling.</b> The robot peels a strip from a cucumber held by a person. FORCA keeps the blade in the
-          4.5&ndash;7.5&nbsp;N target band and produces a continuous strip; the vision-only program loses contact and over-presses.
-        </p>
-      </div>
-      <div class="columns is-vcentered">
-        <div class="column is-7">
-          <figure class="paper-figure-block">
-            <img src="static/images/fig8_peeling.jpg" alt="Cucumber peeling: setup, strip coverage, key frames and normal force" class="paper-figure">
-            <figcaption class="figure-caption">
-              (a) Hand-held setup. (b) Strips after one pass: 90.6% of the intended length for FORCA, 28.9% for vision-only.
-              (c) Key frames. (d) Normal force; shaded intervals mark contact loss.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="column is-5">
-          <div class="table-container">
-            <table class="table is-narrow is-hoverable results-table">
-              <caption>Peeling a hand-held cucumber, averaged over 10 trials. All values in %.</caption>
-              <thead>
-                <tr><th>Method</th><th>Contact<br>loss &darr;</th><th>Excessive<br>force &darr;</th><th>Peeling<br>ratio &uarr;</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Vision-only</td><td>40.6</td><td>13.4</td><td>37.4</td></tr>
-                <tr class="ours"><td>FORCA</td><td>2.2</td><td>2.7</td><td>81.1</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= Iterative revision ================= -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <h3 class="title is-4 result-heading">How the program evolves: door-handle case study</h3>
-      <div class="columns is-vcentered">
-        <div class="column is-6">
-          <figure class="paper-figure-block">
-            <img src="static/images/fig9_door_history.jpg" alt="Door-handle development histories for FORCA and the vision-only agent" class="paper-figure">
-            <figcaption class="figure-caption">Each marker is one execution, placed at the stage where it failed. Executions 18&ndash;20 repeat FORCA's final program.</figcaption>
-          </figure>
-        </div>
-        <div class="column is-6">
-          <div class="content has-text-justified">
-            <p>
-              FORCA failed mostly at <i>press down</i>: the handle turned but the latch did not release. It found the
-              latch release and end stop as a sharp rise in resistance in the recorded press force, then fixed the
-              remaining failures in pulling and releasing.
-            </p>
-            <p>
-              The vision-only agent failed mostly at <i>grasp</i> and <i>pull open</i>. It could press the handle down,
-              but the handle kept slipping out of the gripper before the door opened.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="table-container">
-        <table class="table is-narrow is-hoverable results-table cost-table">
-          <caption>Development iterations and mean time per iteration. Agent reasoning takes most of each iteration.</caption>
-          <thead>
-            <tr><th>Task</th><th>Iterations</th><th>Agent reasoning (min / it.)</th><th>Robot motion (min / it.)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Door handle</td><td>17</td><td>10</td><td>3</td></tr>
-            <tr><td>Drawer</td><td>8</td><td>5</td><td>1.5</td></tr>
-            <tr><td>Cube-to-target, from scratch</td><td>13</td><td>4</td><td>1</td></tr>
-            <tr><td>Cube-to-target, new condition</td><td>2</td><td>4</td><td>1</td></tr>
-            <tr><td>Vase wiping</td><td>20</td><td>4</td><td>1</td></tr>
-            <tr><td>Cucumber peeling</td><td>20</td><td>5</td><td>1.5</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= BibTeX ================= -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <!-- TODO: update with the arXiv ID once announced -->
-      <pre id="bibtex-code"><code>@article{tan2026forca,
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <!-- TODO: update with the arXiv ID once announced -->
+    <pre><code>@article{tan2026forca,
   title   = {FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation},
   author  = {Tan, Xiao and Wang, Yixuan and Wang, Zhexi and Yuan, Wenzhen},
   journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year    = {2026}
 }</code></pre>
-    </div>
-  </section>
+  </div>
+</section>
 
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-            <p>
-              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
-              which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-            </p>
-          </div>
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            It is adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page.
+          </p>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 </body>
 </html>
