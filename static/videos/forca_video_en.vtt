@@ -1,0 +1,175 @@
+WEBVTT
+
+00:03.900 --> 00:07.706
+Coding agents can turn language instructions into robot programs,
+
+00:07.706 --> 00:10.575
+but they ground their decisions mainly in vision.
+
+00:11.800 --> 00:15.331
+Here, a vision-only agent loses its grip on a door handle,
+
+00:15.331 --> 00:19.166
+lifts off a vase it is wiping, and loses contact while peeling.
+
+00:19.900 --> 00:30.595
+Force and contact measurements complement vision by providing evidence about contact states and mechanical responses that are difficult to infer from visual observations alone.
+
+00:30.845 --> 00:31.901
+We present FORCA,
+
+00:31.901 --> 00:38.916
+a training-free coding agent that uses wrist force/torque sensing in both program execution and program revision.
+
+00:42.300 --> 00:43.930
+It writes a complete task program.
+
+00:44.700 --> 00:48.134
+During a rollout, force feedback runs inside the program,
+
+00:48.134 --> 00:49.338
+with no model query.
+
+00:49.588 --> 00:50.184
+Afterward,
+
+00:50.184 --> 00:53.873
+the agent inspects the recorded force and revises the program.
+
+00:57.000 --> 00:59.884
+It starts from open-source modules for perception,
+
+00:59.884 --> 01:01.845
+grasping, planning, and execution.
+
+01:04.070 --> 01:10.915
+We consider three ways in which force/torque feedback can benefit manipulation: improving manipulation accuracy,
+
+01:10.915 --> 01:14.154
+adapting to physical changes, and regulating contact.
+
+01:14.404 --> 01:17.657
+Our experiments show that FORCA effectively addresses all three.
+
+01:17.950 --> 01:24.424
+We use a UR5e with its built-in force/torque sensor and a WSG gripper to conduct experiments.
+
+01:25.200 --> 01:27.774
+First, improving manipulation accuracy,
+
+01:27.774 --> 01:36.090
+by complementing visual estimates with contact-based geometric information to refine grasp poses and guide subsequent actions.
+
+01:37.200 --> 01:39.758
+To open a door, the robot must grasp the handle,
+
+01:39.758 --> 01:41.038
+press it down, and pull.
+
+01:42.100 --> 01:47.130
+FORCA first touches the door panel to correct its visual estimate of the door position,
+
+01:47.130 --> 01:48.980
+and only then grasps the handle.
+
+01:50.700 --> 01:53.006
+It then grasps the handle and presses it down.
+
+01:58.200 --> 02:00.323
+The vision-only agent presses the handle,
+
+02:00.323 --> 02:02.911
+but the bar slips out of its grip during the pull.
+
+02:05.200 --> 02:08.400
+FORCA's program, refined from the recorded press force,
+
+02:08.400 --> 02:10.670
+opens the door and releases the handle.
+
+02:11.700 --> 02:14.514
+Over ten trials, FORCA succeeds every time;
+
+02:14.514 --> 02:16.346
+the vision-only agent, once.
+
+02:18.600 --> 02:20.978
+Second, adapting to physical changes,
+
+02:20.978 --> 02:27.919
+by providing evidence about how object properties affect action outcomes to adjust manipulation accordingly.
+
+02:28.900 --> 02:34.909
+A knocking program developed for a cube on a whiteboard is reused when the object or the surface changes.
+
+02:36.500 --> 02:37.474
+After each knock,
+
+02:37.474 --> 02:42.629
+the agent revises the program from the measured impact force and where the object stopped.
+
+02:44.700 --> 02:47.253
+The light cube reaches the target in two knocks;
+
+02:47.253 --> 02:48.955
+the heavier cylinder needs four.
+
+02:53.000 --> 02:54.565
+Across all four conditions,
+
+02:54.565 --> 02:57.984
+the reused program reaches the target within a few retries.
+
+03:01.900 --> 03:03.592
+Third, regulating contact,
+
+03:03.592 --> 03:10.879
+by using live force measurements to adjust ongoing motion and maintain contact as surfaces vary or objects move.
+
+03:11.800 --> 03:17.578
+Wiping programs refined on a static vase are reused on a vase that a person holds and moves.
+
+03:19.500 --> 03:22.462
+The vision-only program leaves much of the marker line.
+
+03:22.462 --> 03:23.917
+FORCA wipes most of it off.
+
+03:29.500 --> 03:32.650
+From the side, the vision-only eraser lifts off the surface,
+
+03:32.650 --> 03:35.066
+while FORCA keeps it pressed against the vase.
+
+03:36.800 --> 03:39.852
+Contact loss drops from fifty-six percent to under two.
+
+03:40.900 --> 03:42.891
+When peeling a hand-held cucumber,
+
+03:42.891 --> 03:47.341
+the vision-only blade keeps losing contact, while FORCA follows the surface.
+
+03:51.500 --> 03:53.451
+FORCA peels one continuous strip,
+
+03:53.451 --> 03:56.586
+and contact loss falls from forty-one percent to two.
+
+03:58.400 --> 04:02.208
+Developing each program from scratch took eight to twenty iterations.
+
+04:02.500 --> 04:07.848
+Each iteration took four to ten minutes of agent reasoning and one to three minutes of robot motion.
+
+04:14.400 --> 04:15.082
+In summary,
+
+04:15.082 --> 04:22.646
+FORCA is a training-free coding agent that uses wrist force/torque sensing in both program execution and program revision.
+
+04:23.000 --> 04:27.058
+It improves manipulation accuracy, adapts to physical changes,
+
+04:27.058 --> 04:29.546
+and regulates contact on a real robot.
