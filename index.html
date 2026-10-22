@@ -22,13 +22,14 @@
   <meta name="citation_author" content="Wang, Zhexi">
   <meta name="citation_author" content="Yuan, Wenzhen">
   <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="https://tanoom.github.io/forca/static/pdfs/FORCA.pdf">
 
   <title>FORCA: A Force-Aware Coding Agent for Contact-Rich Robot Manipulation</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css?v=3">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=4">
+  <link rel="stylesheet" href="static/css/index.css?v=5">
   <link rel="icon" type="image/png" href="static/images/favicon.png">
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -58,13 +59,13 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- TODO: replace XXXX.XXXXX with the arXiv ID once announced -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/XXXX.XXXXX" class="external-link button is-normal is-rounded is-dark">
+                <a href="static/pdfs/FORCA.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
+              <!-- TODO: replace XXXX.XXXXX with the arXiv ID once announced -->
               <span class="link-block">
                 <a href="https://arxiv.org/abs/XXXX.XXXXX" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
@@ -88,10 +89,11 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/fig1_overview.jpg" class="paper-figure" alt="Overview of FORCA">
+      <img src="static/images/fig3_revision.jpg" class="paper-figure" alt="FORCA revising a cucumber-peeling program from recorded blade force">
       <h2 class="subtitle has-text-centered">
-        <b>FORCA</b> writes robot programs that use wrist force/torque feedback during execution,
-        and revises them by reading the recorded force traces alongside the camera view.
+        <b>FORCA</b> writes robot programs that use wrist force/torque feedback, then revises them from real executions.
+        Here, skin is left exactly where the recorded blade force drops below 1&nbsp;N, so the agent makes the blade
+        wait for contact before moving on.
       </h2>
     </div>
   </div>
@@ -152,18 +154,19 @@
           </p>
         </div>
         <figure>
+          <img src="static/images/fig1_overview.jpg" class="paper-figure" alt="Overview of FORCA">
+          <figcaption class="figure-caption">
+            Overview of FORCA. The agent generates a task program that uses force feedback during execution. Recorded force,
+            robot-state and visual observations inform revisions between rollouts, and generated routines and notes are
+            retained for later reuse.
+          </figcaption>
+        </figure>
+        <figure>
           <img src="static/images/fig2_modules.jpg" class="paper-figure" alt="Predefined skill modules">
           <figcaption class="figure-caption">
             Predefined skill modules. (a) SAM&nbsp;3 localizes the tool named in the instruction. (b) GraspGen proposes
             candidate grasps, and the VLM selects one. (c) PyRoKi plans the trajectory. (d) The robot executes the routine
             to acquire the tool.
-          </figcaption>
-        </figure>
-        <figure>
-          <img src="static/images/fig3_revision.jpg" class="paper-figure" alt="Program revision for cucumber peeling">
-          <figcaption class="figure-caption">
-            Program revision for cucumber peeling. Skin is left exactly where the recorded blade force drops below 1&nbsp;N,
-            so the agent adds a condition that pauses forward motion until contact is restored.
           </figcaption>
         </figure>
       </div>

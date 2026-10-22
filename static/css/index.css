@@ -91,3 +91,7 @@ figure + figure {
 .publication-authors a:hover {
   text-decoration: underline;
 }
+
+.teaser .subtitle {
+  margin-top: 1rem;
+}
